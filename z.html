@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เนื้อหารวมบทเรียน: การเพิ่มประสิทธิภาพการผลิตและการบำรุงรักษา</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for smooth scrolling and sidebar behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        .content-section {
+            padding-top: 5rem; /* Offset for fixed header/sticky element */
+            margin-top: -5rem;
+        }
+        /* Style for pre-formatted text to handle raw text snippets */
+        .content-pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-active {
+            background-color: #3b82f6; /* Blue-500 */
+            color: white;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header / Top Bar -->
+    <header class="fixed top-0 left-0 w-full bg-blue-700 shadow-lg z-30">
+        <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
+            <h1 class="text-xl font-bold text-white">
+                <span class="hidden sm:inline">การเพิ่มประสิทธิภาพการผลิตและการบำรุงรักษา</span> | เนื้อหา บทที่ 1-10
+            </h1>
+            <h1 class="sm:hidden text-lg font-bold text-white">
+                เนื้อหา บทที่ 1-10
+            </h1>
+        </div>
+    </header>
+
+    <div class="flex pt-16"> <!-- Padding for fixed header -->
+
+        <!-- Sidebar Navigation (Sticky and Responsive) -->
+        <nav id="sidebar" class="fixed top-16 left-0 h-[calc(100vh-4rem)] w-64 bg-white border-r shadow-xl z-20 overflow-y-auto hidden lg:block">
+            <div class="p-4 space-y-2">
+                <h3 class="text-lg font-semibold text-gray-700 mb-4">สารบัญบทเรียน</h3>
+                <!-- Links will be populated by JS -->
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="main-content" class="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8">
+            <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-xl shadow-2xl">
+                <h2 class="text-3xl font-extrabold text-blue-700 mb-6 border-b-4 border-blue-200 pb-2">
+                    เอกสารประกอบการเรียน: บทที่ 1 ถึง บทที่ 10
+                </h2>
+
+                <p class="mb-8 text-gray-600">
+                    เนื้อหาที่แสดงด้านล่างนี้ได้จากการสกัดข้อความจากไฟล์ PDF ที่ส่งมา หากมีภาพประกอบหรือตารางจะไม่สามารถแสดงได้ครบถ้วน
+                    ท่านสามารถใช้เมนู 'สารบัญบทเรียน' ด้านซ้ายมือเพื่อไปยังบทที่ต้องการได้ทันที
+                </p>
+
+                <!-- Content Sections will be dynamically generated/loaded below -->
+                <!-- The actual content structured with IDs for navigation -->
+
+                <!-- บทที่ 1 -->
+                <section id="chapter-1" class="content-section bg-blue-50 p-6 rounded-lg mb-10 border-l-4 border-blue-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-blue-800 mb-4">บทที่ 1: การเพิ่มประสิทธิภาพการผลิตโดยการบำรุงรักษา</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from บทที่1.pdf -->
+                        --- PAGE 1 ---
+                        การเพิ่มประสิทธิภาพการผลิตโดยการบำรุงรักษา
+
+                        Total productive maintenance
+
+                        1.1.1 แนวทางเพิ่มประสิทธิภาพการผลิต
+
+                        INPUT -> กระบวนการผลิต (โรงงาน องค์กร หน่วยงาน) -> OUTPUT
+                        ทรัพยากรที่ต้องเข้าโรงงาน (4 Ms: Man, Machine, Material, Method)
+                        ความต้องการจากโรงงาน (P, Q, C, D, S, M: Products, Quality, Cost, Delivery, Safety, Morale)
+
+                        --- PAGE 2 ---
+                        1.1.2 ต้นทุนวงจรอายุเครื่องจักร
+
+                        ต้นทุน ติดตั้ง -> เดินเครื่อง -> บำรุงรักษา ชิ้นส่วน -> กำจัด
+                        ผู้ที่เกี่ยวข้อง: ผู้บริหาร, วิศวกร, ฝ่ายจัดซื้อ, ฝ่ายปฏิบัติการ, ฝ่ายบำรุงรักษา, สโตร์
+
+                        --- PAGE 3 ---
+                        1.2 เป้าหมายขององค์กร (เพิ่มประสิทธิภาพการผลิต / หาผลกำไร)
+                        1. ควบคุมกระบวนการ (คน, เครื่องจักร)
+                        2. ควบคุมคุณภาพ (Q.C.)
+                        3. ควบคุมต้นทุน (Cost)
+
+                        ...และ หลักสูตรการบำรุงรักษา (TPM ระดับบริหาร, หัวหน้างาน, พนักงาน)
+                    </div>
+                </section>
+
+                <!-- บทที่ 2 -->
+                <section id="chapter-2" class="content-section bg-green-50 p-6 rounded-lg mb-10 border-l-4 border-green-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-green-800 mb-4">บทที่ 2: การบำรุงรักษาเชิงป้องกัน</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from ทบที่2.pdf -->
+                        --- PAGE 1 ---
+                        ประเภทการบำรุงรักษา:
+                        1. การบำรุงรักษาเชิงป้องกัน (Preventive Maintenance)
+                        2. การบำรุงหลังเหตุขัดข้อง (Break down Maintenance)
+                        3. การบำรุงรักษาเชิงแก้ไขปรับปรุง (Corrective Maintenance)
+                        4. การบำรุงรักษาทวีผล (Total Productive Maintenance - TPM)
+                        5. การป้องกันการบำรุงรักษา (Maintenance Prevention)
+
+                        --- PAGE 2 ---
+                        การบำรุงรักษาเชิงป้องกัน: ดำเนินการเพื่อป้องกันการหยุดของเครื่องจักรโดยเหตุฉุกเฉิน
+                        ทำได้โดย: การตรวจสอบสภาพ, ทำความสะอาด, หล่อลื่น, ปรับแต่งให้เครื่องจักรทำงานตามคู่มือ
+
+                        --- PAGE 3-4 ---
+                        การบำรุงรักษาหลังเกิดเหตุขัดข้อง: เมื่อเครื่องจักรชำรุดและหยุดโดยฉุกเฉิน
+                        การบำรุงเชิงแก้ไขปรับปรุง: ดัดแปลง/ปรับปรุงเครื่องจักรเพื่อขจัดเหตุขัดข้องเรื้อรัง และปรับปรุงสมรรถนะ
+                        การป้องกันการบำรุงรักษา: ให้ได้มาซึ่งเครื่องจักรที่ไม่ต้องการการบำรุงรักษาบ่อย (ออกแบบเพื่อความง่ายในการบำรุงรักษา)
+
+                        --- PAGE 7-8 ---
+                        แนวทางการส่งเสริมเพื่อนำระบบ PM มาใช้งาน (7 ข้อ) และ การจัดระบบและการพัฒนาการบริหารงานบำรุงรักษาจาก PM ถึง TPM
+                    </div>
+                </section>
+
+                <!-- บทที่ 3 -->
+                <section id="chapter-3" class="content-section bg-yellow-50 p-6 rounded-lg mb-10 border-l-4 border-yellow-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-yellow-800 mb-4">บทที่ 3: ประโยชน์และเป้าหมายของข้อมูลการบำรุงรักษา</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from ทบที่ 3.pdf -->
+                        --- PAGE 1 ---
+                        ประโยชน์ของข้อมูลการบำรุงรักษา:
+                        1. กำหนดมาตรฐานของการบำรุงรักษา
+                        2. ช่วยเหลือ/แนะนำทางเทคนิค
+                        3. รวมรวมผลเพื่อนำไปกำหนดแผนการปรับปรุง
+                        4. ใช้แผนการปรับปรุง
+                        5. กำหนดมาตรฐานใหม่
+
+                        --- PAGE 3 ---
+                        วัตถุประสงค์ของการเก็บข้อมูล: เพื่อให้ผลิตได้ตามแผน, เพื่อรักษา/เพิ่มคุณภาพ, เพื่อการลดต้นทุน, เพื่อส่งมอบ, เพื่อให้ขวัญ/กำลังใจ, เพื่อเพิ่มความปลอดภัย
+
+                        --- PAGE 4 ---
+                        ข้อมูลการบำรุงรักษาที่ดี (5W 1H): Who, What, Why, How (เมื่อไหร่), When (เมื่อต้องการ), Where (ที่ไหน)
+
+                        --- PAGE 5-6 ---
+                        ประเภทต่างๆ ของการรวบรวมข้อมูล: บันทึกรายวัน, ตารางควบคุมการตรวจสอบ, EDPS, รายงานอุบัติเหตุ ฯลฯ
+                        การใช้ประโยชน์จากข้อมูลการบำรุงรักษา: ตามวงจร PDCA (PLAN, DO, CHECK, ACTION)
+                    </div>
+                </section>
+
+                <!-- บทที่ 4 -->
+                <section id="chapter-4" class="content-section bg-red-50 p-6 rounded-lg mb-10 border-l-4 border-red-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-red-800 mb-4">บทที่ 4: การวางแผนงานบำรุงรักษา</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from บทที่4.pdf -->
+                        --- PAGE 1-2 ---
+                        คุณลักษณะของวัตถุประสงค์ที่ดี: ชัดเจน, สอดคล้องกับองค์กร, มีแนวทางที่ทำสำเร็จได้, เหมาะสมกับเวลา/สถานการณ์, ไม่ขัดต่อกฎหมาย/ศีลธรรม
+                        สิ่งที่ต้องพิจารณาขณะวางแผน: การคาดทำนาย, การกำหนดวัตถุประสงค์/เป้าหมาย, การวางโครงการ, นโยบาย, กำหนดเวลา, แผนปฏิบัติงาน, งบประมาณ ฯลฯ
+
+                        --- PAGE 3 ---
+                        สาเหตุความบกพร่องของการวางแผน: ข้อมูลไม่พอ, วิเคราะห์ข้อมูลผิดพลาด, วัตถุประสงค์เปลี่ยน, สิ่งแวดล้อมเปลี่ยน, บริหารตามแผนไม่ถูกต้อง
+
+                        --- PAGE 10-11 ---
+                        เป้าหมายของการวางแผนบำรุงรักษา คือ:
+                        1. รักษาสมรรถนะของเครื่องจักรอุปกรณ์ให้เป็นปกติ
+                        2. อยู่ในระดับที่ประหยัดเสมอ
+                        3. ใช้ประโยชน์จากบทเรียนของเหตุขัดข้องให้มาก
+                        4. ทำมาตรฐานการบำรุงรักษาให้สมบูรณ์
+                        5. การบำรุงรักษาทำได้เพียงพอ
+                    </div>
+                </section>
+
+                <!-- บทที่ 5 -->
+                <section id="chapter-5" class="content-section bg-purple-50 p-6 rounded-lg mb-10 border-l-4 border-purple-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-purple-800 mb-4">บทที่ 5: งานตรวจปรับเครื่องจักรกล (งานขูด)</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from หน่วยที่ 5 (เนื้อหา).pdf -->
+                        --- PAGE 1 ---
+                        5.1 งานขูด: การดันเศษวัตถุเล็กๆ ออกจากผิวงานที่ได้รับการเตรียมผิวแล้ว เพื่อปรับผิวงานให้มีความเรียบด้วย "เหล็กขูด"
+                        5.2 ชนิดของเหล็กขูด:
+                        5.2.1 เหล็กขูดแบน: ชนิดแข็งทั้งตัว (ลับคมได้โดยตรง) และแบบถอดเปลี่ยนใบเหล็กขูดได้
+                        ลักษณะอื่นๆ: เหล็กขูดโค้ง, เหล็กขูดปลายสามเหลี่ยม, เหล็กขูดสี่เหลี่ยม
+
+                        --- PAGE 16-17 ---
+                        การลับเหล็กขูด: ใช้หินน้ำมันตามธรรมชาติหรือหินที่ประดิษฐ์ขึ้น
+                        การลับเหล็กขูดแบน: ลับผิวด้านหน้าและผิวของแผ่นสลับกันไปมา จนกระทั่งรอยเยินหายไป ต้องใช้มือทั้งสองจับเหล็กขูดกดลงบนหินลับ และเลือกมุมตั้งในการลับให้ได้มุมคมที่เหมาะสม
+                    </div>
+                </section>
+
+                <!-- บทที่ 6 -->
+                <section id="chapter-6" class="content-section bg-indigo-50 p-6 rounded-lg mb-10 border-l-4 border-indigo-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-indigo-800 mb-4">บทที่ 6: การบำรุงรักษาด้วยตนเอง</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from บทที่6.pdf -->
+                        --- PAGE 1 ---
+                        6.1 เบื้องหลังความจำเป็นของการบำรุงรักษาด้วยตนเอง: การเปลี่ยนแปลงของวิทยาการ/เทคโนโลยี, การปรับตัวรองรับการขยายตัว, สภาวะการแข่งขัน
+                        6.2 ความรวมมือของฝ่ายผลิตและฝ่ายบำรุงรักษา: ฝ่ายผลิตปฏิบัติงานสายการผลิต, ฝ่ายบำรุงรักษาบริการบำรุงรักษา ต้องมีความร่วมมือกัน
+
+                        --- PAGE 2 ---
+                        6.3 การแบ่งประเภทและหน้าที่ความรับผิดชอบ:
+                        ปัจจัย 3 ประการ: 1. การป้องกันการเสื่อมสภาพ 2. การวัดการเสื่อมสภาพ 3. การทำให้กลับอยู่ในสภาพเดิม
+                        กิจกรรมของฝ่ายปฏิบัติงาน: การใช้เครื่องจักรถูกวิธี, ปรับเงื่อนไขเบื้องต้น (ทำความสะอาด หยอดน้ำมัน กวดขัน), ปรับแต่งเครื่อง, ตรวจสอบประจำวัน/เป็นระยะ
+
+                        --- PAGE 4-5 ---
+                        6.7 ขั้นที่ 2: มาตรการเกี่ยวกับสาเหตุและจุดที่มีปัญหา (ความเสียหายจากเศษฝุ่น, จุดที่เป็นปัญหาและการแก้ไข)
+                        6.8 ขั้นที่ 3: กำหนดมาตรการเกี่ยวกับการทำความสะอาด เติมน้ำมัน (ต้องระบุสิ่งที่ต้องปฏิบัติและวิธีการอย่างชัดเจน)
+                    </div>
+                </section>
+
+                <!-- บทที่ 7 -->
+                <section id="chapter-7" class="content-section bg-pink-50 p-6 rounded-lg mb-10 border-l-4 border-pink-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-pink-800 mb-4">บทที่ 7: การกำหนดมาตรฐานในการบำรุงรักษา</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from บทที่ 7.pdf -->
+                        --- PAGE 1 ---
+                        การกำหนดมาตรฐาน: คือ การจัดหาหลักเกณฑ์อ้างอิงขั้นพื้นฐานสำหรับเป็นแนวทางการปฏิบัติงานของพนักงาน
+
+                        --- PAGE 2 ---
+                        จุดมุ่งหมายของการจัดมาตรฐาน:
+                        1. การเพิ่มผลผลิต: เพิ่มอัตราการใช้งาน/คุณภาพ/อัตราการได้ผลผลิต
+                        2. ค่าใช้จ่าย: ลดค่าซ่อมบำรุง/ลดพนักงานบำรุงรักษา
+                        3. ความปลอดภัย: มาตรฐานสำหรับการประกันความปลอดภัย
+
+                        --- PAGE 3 ---
+                        การจำแนกประเภทของมาตรฐาน:
+                        1. การควบคุมเทคโนโลยีเกี่ยวกับการบำรุงรักษาเครื่องจักรอุปกรณ์ (มาตรฐานการบำรุงรักษา, มาตรฐานระดับความสำคัญ)
+                        2. การควบคุมวัสดุสำรอง (ระบบจัดการกับอุปกรณ์, มาตรฐานการส่งจ่าย, มาตรฐานคู่มือ)
+                        3. ควบคุมการทำงาน (ระบบจัดการการทำงาน, มาตรฐานการทำงาน)
+                    </div>
+                </section>
+
+                <!-- บทที่ 8 -->
+                <section id="chapter-8" class="content-section bg-teal-50 p-6 rounded-lg mb-10 border-l-4 border-teal-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-teal-800 mb-4">บทที่ 8: การควบคุมและการวัดผลงานการบำรุงรักษา</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from บทที่ 8.pdf -->
+                        --- PAGE 1 ---
+                        วัตถุประสงค์ของการควบคุมงานบำรุงรักษา: ลดค่าใช้จ่ายด้านเงินลงทุน/การบำรุงรักษา/การเดินเครื่องจักร ให้ต่ำที่สุด ภายใต้ข้อกำหนดทางคุณภาพและปริมาณของผลผลิต
+
+                        --- PAGE 2 ---
+                        ปัจจัยที่มีผลกระทบ: หลักการบริหาร, ระบบการวางแผน/ควบคุม, ระบบจัดหา/จัดเก็บอะไหล่, โรงซ่อม/คลังเก็บวัสดุ, อุปกรณ์บำรุงรักษา
+
+                        --- PAGE 3 ---
+                        การควบคุมทางด้านข้อมูล: 1) ทะเบียนประวัติเครื่องจักร 2) รายงานการซ่อม 3) การจัดการประมวลผลและวิเคราะห์งาน
+
+                        --- PAGE 4-5 ---
+                        การวัดผลบำรุงรักษา: การวัดอัตราส่วนที่นิยม และ การวัดผลด้วยวิธีของดูปองค์ (พิจารณา 4 ประเภท: การวางแผนงาน, ภาระกรรมของงาน, ค่าใช้จ่าย, ผลการปฏิบัติงาน)
+                        เป้าหมายของระบบการควบคุม: ควบคุมการใช้ทรัพยากรให้สูงสุด และ ควบคุมกำลังการผลิตให้มีประสิทธิภาพ
+                    </div>
+                </section>
+
+                <!-- บทที่ 9 -->
+                <section id="chapter-9" class="content-section bg-cyan-50 p-6 rounded-lg mb-10 border-l-4 border-cyan-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-cyan-800 mb-4">บทที่ 9: การประยุกต์เทคนิควิศวกรรมและการวัดประสิทธิผล</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from บทที่ 9.pdf -->
+                        --- PAGE 1 ---
+                        เทคนิควิศวกรรม: วิธีการที่หัวหน้างานคิดค้นขึ้นเพื่อปรับปรุงงานด้านปฏิบัติงาน/การบำรุงรักษา เพื่อเพิ่มประสิทธิภาพแรงงาน
+                        เทคนิควิศวกรรมพื้นฐาน 2 อย่าง: 1. การกำหนดเวลาที่ถูกต้อง 2. เทคนิคการปรับปรุงงาน (วิเคราะห์การทำงาน/การเคลื่อนไหว/กระบวนการ)
+
+                        --- PAGE 2 ---
+                        การวัดการทำงานในการบำรุงรักษา: จุดมุ่งหมายในการวัด, การประเมินสภาพความเป็นจริง (การสุ่มงาน: WS Work Sampling)
+
+                        --- PAGE 4 ---
+                        มาตรการที่อาจนำมาใช้ในการลดค่าใช้จ่ายในชิ้นส่วนอะไหล่: การบำรุงรักษาเชิงป้องกัน, นโยบายการจัดซื้อเครื่องจักร, การทำให้เป็นมาตรฐาน/เปลี่ยนใช้งานแทนกันได้, การควบคุมคลังสินค้า
+
+                        --- PAGE 6 ---
+                        วัตถุประสงค์ของการวัดประสิทธิผล PM: ประเมินผลการทำงาน, ยกระดับขวัญ/กำลังใจ, ทำให้ทราบซึ้งถึงความสำคัญของงานบำรุงรักษา
+                    </div>
+                </section>
+
+                <!-- บทที่ 10 -->
+                <section id="chapter-10" class="content-section bg-orange-50 p-6 rounded-lg mb-10 border-l-4 border-orange-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-orange-800 mb-4">บทที่ 10: ประสบการณ์ในการบำรุงรักษา</h3>
+                    <div class="text-gray-700 text-sm content-pre">
+                        <!-- Content from บทที่ 10.pdf -->
+                        --- PAGE 1-2 ---
+                        ปัญหาต่างๆ ที่เกิดขึ้นในการประกอบกิจการธุรกิจอุตสาหกรรม: การเมือง, การเผด็จการทางเศรษฐกิจ, นโยบายรัฐบาล, ระบบบริหารราชการ, ระบบภาษี, โครงสร้างอุตสาหกรรม, วิกฤตการณ์พลังงาน/วัตถุดิบ, ค่าครองชีพ/ค่าแรงงานสูง, การแข่งขัน, การเลียนแบบสินค้า, กฎหมายคุมครองผู้บริโภค, ปัญหาสิ่งแวดล้อมเป็นพิษ, Technology lag
+
+                        --- PAGE 7 ---
+                        ปัญหาหลักของงานบำรุงรักษา:
+                        1. ฝ่ายจัดการให้ความสำคัญน้อย
+                        2. มีผู้รู้เกี่ยวกับธรรมชาติงาน/วิธีการบำรุงรักษาน้อย
+                        3. ไม่มีการฝึกอบรมสม่ำเสมอ
+                        4. ถูกมองว่าไม่จำเป็นต้องมีกฎเกณฑ์มาก
+                        5. พนักงานไม่ได้รับทราบแนวความคิดสมัยใหม่
+                        6. การบำรุงรักษาป้องกันถูกละเลย
+                        7. ไม่นึกถึงความยากง่ายในการบำรุงรักษาตอนสั่งซื้อเครื่องจักร
+
+                        การจัดระบบข้อมูล: ข้อมูลหลัก 3 ส่วน: 1. Machine Data 2. Machine History 3. Manpower
+                    </div>
+                </section>
+                
+                <!-- Footer Spacer -->
+                <div class="h-16"></div> 
+            </div>
+        </main>
+
+    </div>
+
+    <!-- JavaScript for Sidebar Navigation and Active State -->
+    <script>
+        const chapters = [
+            { id: 'chapter-1', title: 'บทที่ 1: การเพิ่มประสิทธิภาพการผลิต' },
+            { id: 'chapter-2', title: 'บทที่ 2: การบำรุงรักษาเชิงป้องกัน' },
+            { id: 'chapter-3', title: 'บทที่ 3: ประโยชน์ข้อมูลการบำรุงรักษา' },
+            { id: 'chapter-4', title: 'บทที่ 4: การวางแผนงานบำรุงรักษา' },
+            { id: 'chapter-5', title: 'บทที่ 5: งานตรวจปรับเครื่องจักรกล' },
+            { id: 'chapter-6', title: 'บทที่ 6: การบำรุงรักษาด้วยตนเอง' },
+            { id: 'chapter-7', title: 'บทที่ 7: การกำหนดมาตรฐาน' },
+            { id: 'chapter-8', title: 'บทที่ 8: การควบคุมและการวัดผลงาน' },
+            { id: 'chapter-9', title: 'บทที่ 9: เทคนิควิศวกรรมและการวัดประสิทธิผล' },
+            { id: 'chapter-10', title: 'บทที่ 10: ประสบการณ์ในการบำรุงรักษา' }
+        ];
+
+        const sidebar = document.querySelector('#sidebar > div');
+
+        // 1. Populate Sidebar Links
+        chapters.forEach(chapter => {
+            const link = document.createElement('a');
+            link.href = `#${chapter.id}`;
+            link.textContent = chapter.title;
+            link.className = 'block p-3 rounded-lg text-sm transition duration-150 ease-in-out hover:bg-blue-100 hover:text-blue-700 text-gray-700';
+            link.setAttribute('data-target', chapter.id);
+            sidebar.appendChild(link);
+        });
+
+        // 2. Observer to highlight active link
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -80% 0px', // Highlight link when section is near the top
+            threshold: 0 // As soon as a section enters the viewport
+        };
+
+        const sections = document.querySelectorAll('.content-section');
+        const observer = new IntersectionObserver((entries) => {
+            let activeId = null;
+            // Iterate over all observed entries
+            entries.forEach(entry => {
+                // Find the first section that is currently intersecting
+                // or use the last section that just left the top of the viewport
+                if (entry.isIntersecting) {
+                    // This is a simple logic: highlight the first intersecting section from the top
+                    // We check if it is above the center of the viewport
+                    const rect = entry.target.getBoundingClientRect();
+                    if (rect.top < window.innerHeight / 2) {
+                        activeId = entry.target.id;
+                    }
+                }
+            });
+
+            // If no active ID found from intersecting (e.g., scrolled all the way down),
+            // manually check which one is closest to the top
+            if (!activeId) {
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const rect = sections[i].getBoundingClientRect();
+                    if (rect.top < 100) { // If section is within 100px of the top
+                        activeId = sections[i].id;
+                        break;
+                    }
+                }
+            }
+            
+            // Fallback for very top
+            if (!activeId && window.scrollY < 100) {
+                 activeId = sections[0].id;
+            }
+
+
+            // Remove active class from all links
+            document.querySelectorAll('#sidebar a').forEach(link => {
+                link.classList.remove('sidebar-active');
+            });
+
+            // Add active class to the current section's link
+            if (activeId) {
+                const activeLink = document.querySelector(`#sidebar a[data-target="${activeId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('sidebar-active');
+                }
+            }
+        }, observerOptions);
+
+        // Attach observer to each content section
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 3. Initial active state setting on load
+        window.addEventListener('load', () => {
+             // Trigger the check manually once on load
+             observer.takeRecords().forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Simulate the observer logic
+                    const activeId = entry.target.id;
+                    document.querySelector(`#sidebar a[data-target="${activeId}"]`)?.classList.add('sidebar-active');
+                }
+            });
+            if (window.scrollY < 100) {
+                 document.querySelector('#sidebar a[data-target="chapter-1"]')?.classList.add('sidebar-active');
+            }
+        });
+        
+    </script>
+</body>
+</html>
