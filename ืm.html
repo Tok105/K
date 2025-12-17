@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การเพิ่มประสิทธิภาพการผลิตโดยการบำรุงรักษา (TPM)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #F3F4F6; }
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 600px; 
+            margin-left: auto; 
+            margin-right: auto; 
+            height: 300px; 
+            max-height: 400px; 
+        }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .nav-item.active { background-color: #D1FAE5; color: #065F46; border-left: 4px solid #059669; }
+        .content-section { display: none; animation: fadeIn 0.5s ease-in-out; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+    </style>
+    <!-- Chosen Palette: Warm Neutrals with Green Accents (Growth/Maintenance) -->
+    <!-- Application Structure Plan: Dashboard-style layout with a sidebar navigation for major themes (Foundations, Maintenance Types, Data & Planning, Operations, Challenges). This structure groups related chapters from the report into logical functional areas, allowing users to explore concepts non-linearly. The 'Challenges' section specifically addresses the user's query about external factors. -->
+    <!-- Visualization & Content Choices: 
+         1. TPM Goals (P-Q-C-D-S-M): Bar Chart -> Compare operational metrics.
+         2. 4Ms Resource Breakdown: Doughnut Chart -> Show composition of inputs.
+         3. Maintenance Types: Interactive Cards -> Explain PM, BM, CM, MP clearly.
+         4. PDCA Cycle: Interactive Step-by-Step Flow -> Demonstrate the continuous improvement process.
+         5. External Challenges: List/Tag Cloud -> Highlight the specific external factors mentioned by the user.
+         CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-gray-50 text-gray-800 h-screen flex flex-col md:flex-row overflow-hidden">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-64 bg-white shadow-md flex-shrink-0 flex flex-col h-full z-10">
+        <div class="p-6 border-b border-gray-100">
+            <h1 class="text-2xl font-bold text-emerald-700">TPM Learning</h1>
+            <p class="text-xs text-gray-500 mt-1">Total Productive Maintenance</p>
+        </div>
+        <nav class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1">
+                <li><button onclick="showSection('dashboard')" class="nav-item active w-full text-left px-6 py-3 hover:bg-gray-50 transition-colors flex items-center">
+                    <span class="mr-2">🏠</span> ภาพรวม (Overview)
+                </button></li>
+                <li><button onclick="showSection('foundations')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-50 transition-colors flex items-center">
+                    <span class="mr-2">📚</span> พื้นฐาน TPM
+                </button></li>
+                <li><button onclick="showSection('types')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-50 transition-colors flex items-center">
+                    <span class="mr-2">🔧</span> ประเภทการบำรุงรักษา
+                </button></li>
+                <li><button onclick="showSection('data-planning')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-50 transition-colors flex items-center">
+                    <span class="mr-2">📊</span> ข้อมูลและการวางแผน
+                </button></li>
+                <li><button onclick="showSection('operations')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-50 transition-colors flex items-center">
+                    <span class="mr-2">⚙️</span> การปฏิบัติงาน & มาตรฐาน
+                </button></li>
+                <li><button onclick="showSection('challenges')" class="nav-item w-full text-left px-6 py-3 hover:bg-gray-50 transition-colors flex items-center">
+                    <span class="mr-2">⚠️</span> ประสบการณ์ & ปัญหา
+                </button></li>
+            </ul>
+        </nav>
+        <div class="p-4 border-t border-gray-100 text-xs text-gray-400 text-center">
+            &copy; 2025 TPM Interactive Guide
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-8 relative" id="main-content">
+        
+        <!-- Section: Dashboard (Overview) -->
+        <section id="dashboard" class="content-section active max-w-5xl mx-auto">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-2">ยินดีต้อนรับสู่ TPM Interactive</h2>
+                <p class="text-gray-600">สำรวจแนวคิดการเพิ่มประสิทธิภาพการผลิตโดยการบำรุงรักษา (Total Productive Maintenance) ผ่านข้อมูลเชิงลึกและการแสดงผลแบบอินเทอร์แอคทีฟ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Concept Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <h3 class="text-lg font-semibold text-emerald-600 mb-4">เป้าหมายหลัก (P-Q-C-D-S-M)</h3>
+                    <p class="text-sm text-gray-500 mb-4">ดัชนีชี้วัดความสำเร็จของการผลิตและการบำรุงรักษา</p>
+                    <div class="chart-container">
+                        <canvas id="pqcdsmChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- 4Ms Card -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 card-hover">
+                    <h3 class="text-lg font-semibold text-emerald-600 mb-4">ทรัพยากรการผลิต (4Ms)</h3>
+                    <p class="text-sm text-gray-500 mb-4">ปัจจัยนำเข้าสำคัญเพื่อการผลิตที่มีประสิทธิภาพ</p>
+                    <div class="chart-container flex justify-center items-center">
+                        <canvas id="resourcesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intro to LCC -->
+            <div class="bg-indigo-50 p-6 rounded-xl border border-indigo-100">
+                <h3 class="text-xl font-bold text-indigo-800 mb-2">ต้นทุนวงจรอายุเครื่องจักร (Life Cycle Cost - LCC)</h3>
+                <p class="text-indigo-700">การบริหารจัดการที่ดีต้องพิจารณาต้นทุนตลอดอายุการใช้งาน ตั้งแต่การออกแบบ ติดตั้ง เดินเครื่อง บำรุงรักษา จนถึงการกำจัด ไม่ใช่แค่ราคาซื้อ</p>
+            </div>
+        </section>
+
+        <!-- Section: Foundations -->
+        <section id="foundations" class="content-section max-w-5xl mx-auto">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">พื้นฐาน TPM</h2>
+                <p class="text-gray-600">เข้าใจแนวคิดและเป้าหมายขององค์กรเพื่อมุ่งสู่ความสำเร็จ</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-red-500">
+                    <h3 class="font-bold text-lg mb-2">Zero Breakdown</h3>
+                    <p class="text-gray-600 text-sm">เครื่องจักรไม่หยุดชะงัก มุ่งเน้นการขจัดความสูญเสียจากการหยุดเครื่อง</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-yellow-500">
+                    <h3 class="font-bold text-lg mb-2">Zero Defect</h3>
+                    <p class="text-gray-600 text-sm">ของเสียเป็นศูนย์ ผลิตสินค้าที่มีคุณภาพ 100% ตลอดเวลา</p>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-sm border-l-4 border-green-500">
+                    <h3 class="font-bold text-lg mb-2">Zero Accident</h3>
+                    <p class="text-gray-600 text-sm">อุบัติเหตุเป็นศูนย์ สร้างสภาพแวดล้อมการทำงานที่ปลอดภัย</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm mb-6">
+                <h3 class="text-lg font-bold text-emerald-700 mb-4">แนวทางการส่งเสริม TPM</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> ผู้บริหารต้องยอมรับและให้การสนับสนุนอย่างจริงจัง</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> นโยบาย P, Q, C, D, S, M ต้องชัดเจนและสื่อสารทั่วถึง</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> จัดผังบริหารงานและแบ่งกลุ่มเครื่องจักรตามระดับความสำคัญ (Ranking)</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">✓</span> ฝึกอบรมบุคลากรในทุกสายงานเพื่อยกระดับทักษะ</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section: Maintenance Types -->
+        <section id="types" class="content-section max-w-5xl mx-auto">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">ประเภทของการบำรุงรักษา</h2>
+                <p class="text-gray-600">เลือกกลยุทธ์การบำรุงรักษาที่เหมาะสมกับสถานการณ์และเครื่องจักร</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                <!-- PM Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="bg-blue-100 p-4 border-b border-blue-200">
+                        <h3 class="font-bold text-blue-800">1. การบำรุงรักษาเชิงป้องกัน (PM)</h3>
+                        <p class="text-xs text-blue-600">Preventive Maintenance</p>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-gray-600 text-sm mb-3">ดำเนินการเพื่อป้องกันการหยุดฉุกเฉิน เน้นการตรวจสอบและดูแลก่อนเกิดปัญหา</p>
+                        <ul class="text-sm text-gray-500 list-disc ml-5 space-y-1">
+                            <li>ตรวจสอบสภาพเครื่องจักร</li>
+                            <li>ทำความสะอาดและหล่อลื่น</li>
+                            <li>ปรับแต่งตามคู่มือ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BM Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="bg-red-100 p-4 border-b border-red-200">
+                        <h3 class="font-bold text-red-800">2. การบำรุงรักษาหลังเกิดเหตุ (BM)</h3>
+                        <p class="text-xs text-red-600">Breakdown Maintenance</p>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-gray-600 text-sm mb-3">ดำเนินการเมื่อเครื่องจักรชำรุดและหยุดฉุกเฉินแล้ว (ซ่อมเมื่อเสีย)</p>
+                        <div class="bg-red-50 p-2 rounded text-xs text-red-700 mt-2">
+                            *ควรลดให้เหลือน้อยที่สุด
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CM Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="bg-yellow-100 p-4 border-b border-yellow-200">
+                        <h3 class="font-bold text-yellow-800">3. การบำรุงรักษาเชิงแก้ไขปรับปรุง (CM)</h3>
+                        <p class="text-xs text-yellow-600">Corrective Maintenance</p>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-gray-600 text-sm mb-3">ดัดแปลงหรือปรับปรุงเครื่องจักรเพื่อขจัดปัญหาเรื้อรัง</p>
+                        <ul class="text-sm text-gray-500 list-disc ml-5 space-y-1">
+                            <li>ขจัดเหตุขัดข้องที่เกิดซ้ำซาก</li>
+                            <li>ปรับปรุงสมรรถนะให้ผลิตได้ดีขึ้น</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MP Card -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="bg-purple-100 p-4 border-b border-purple-200">
+                        <h3 class="font-bold text-purple-800">4. การป้องกันการบำรุงรักษา (MP)</h3>
+                        <p class="text-xs text-purple-600">Maintenance Prevention</p>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-gray-600 text-sm mb-3">ออกแบบหรือเลือกซื้อเครื่องจักรที่ "ไม่ต้องบำรุงรักษา" หรือบำรุงรักษาน้อยที่สุด</p>
+                        <p class="text-xs text-gray-400 italic">เป้าหมายสูงสุดของการออกแบบเครื่องจักร</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Data & Planning -->
+        <section id="data-planning" class="content-section max-w-5xl mx-auto">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">ข้อมูลและการวางแผน</h2>
+                <p class="text-gray-600">การใช้ข้อมูลขับเคลื่อนวงจร PDCA และการวางแผนที่มีประสิทธิภาพ</p>
+            </div>
+
+            <!-- PDCA Interactive -->
+            <div class="bg-white p-6 rounded-xl shadow-sm mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">วงจรการปรับปรุง (PDCA Cycle)</h3>
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div onclick="highlightPDCA('plan')" class="cursor-pointer bg-blue-50 hover:bg-blue-100 p-4 rounded-lg w-full text-center border border-blue-200 transition-all">
+                        <div class="text-2xl mb-1">📋</div>
+                        <div class="font-bold text-blue-800">Plan</div>
+                        <div class="text-xs text-gray-500">กำหนดมาตรฐาน/แผน</div>
+                    </div>
+                    <div class="text-gray-400">➔</div>
+                    <div onclick="highlightPDCA('do')" class="cursor-pointer bg-green-50 hover:bg-green-100 p-4 rounded-lg w-full text-center border border-green-200 transition-all">
+                        <div class="text-2xl mb-1">🔧</div>
+                        <div class="font-bold text-green-800">Do</div>
+                        <div class="text-xs text-gray-500">ปฏิบัติ/ซ่อมแซม</div>
+                    </div>
+                    <div class="text-gray-400">➔</div>
+                    <div onclick="highlightPDCA('check')" class="cursor-pointer bg-yellow-50 hover:bg-yellow-100 p-4 rounded-lg w-full text-center border border-yellow-200 transition-all">
+                        <div class="text-2xl mb-1">🔍</div>
+                        <div class="font-bold text-yellow-800">Check</div>
+                        <div class="text-xs text-gray-500">บันทึก/วิเคราะห์ผล</div>
+                    </div>
+                    <div class="text-gray-400">➔</div>
+                    <div onclick="highlightPDCA('action')" class="cursor-pointer bg-red-50 hover:bg-red-100 p-4 rounded-lg w-full text-center border border-red-200 transition-all">
+                        <div class="text-2xl mb-1">🚀</div>
+                        <div class="font-bold text-red-800">Action</div>
+                        <div class="text-xs text-gray-500">ปรับปรุง/มาตรฐานใหม่</div>
+                    </div>
+                </div>
+                <div id="pdca-detail" class="mt-6 p-4 bg-gray-50 rounded-lg text-sm text-gray-600 min-h-[80px]">
+                    คลิกที่ขั้นตอนด้านบนเพื่อดูรายละเอียดเพิ่มเติม
+                </div>
+            </div>
+
+            <!-- 5W1H Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-gray-800 mb-3">ลักษณะข้อมูลที่ดี (5W 1H)</h3>
+                    <div class="grid grid-cols-3 gap-2 text-center text-sm">
+                        <div class="bg-gray-100 p-2 rounded">Who<br><span class="text-xs text-gray-500">ใคร</span></div>
+                        <div class="bg-gray-100 p-2 rounded">What<br><span class="text-xs text-gray-500">อะไร</span></div>
+                        <div class="bg-gray-100 p-2 rounded">Why<br><span class="text-xs text-gray-500">ทำไม</span></div>
+                        <div class="bg-gray-100 p-2 rounded">When<br><span class="text-xs text-gray-500">เมื่อไหร่</span></div>
+                        <div class="bg-gray-100 p-2 rounded">Where<br><span class="text-xs text-gray-500">ที่ไหน</span></div>
+                        <div class="bg-gray-100 p-2 rounded">How<br><span class="text-xs text-gray-500">อย่างไร</span></div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-gray-800 mb-3">องค์ประกอบแผนงาน</h3>
+                    <ul class="text-sm text-gray-600 list-disc ml-5 space-y-2">
+                        <li>ต้องสอดคล้องกับเป้าหมายองค์กร</li>
+                        <li>ต้องมีการคาดการณ์ (Forecasting)</li>
+                        <li>กำหนดงบประมาณและกำลังคน</li>
+                        <li>ต้องเห็นความสัมพันธ์กับการผลิตชัดเจน</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Operations -->
+        <section id="operations" class="content-section max-w-5xl mx-auto">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">การปฏิบัติงานและมาตรฐาน</h2>
+                <p class="text-gray-600">การบำรุงรักษาด้วยตนเองและการกำหนดมาตรฐานการทำงาน</p>
+            </div>
+
+            <div class="bg-emerald-50 rounded-xl p-6 mb-8 border border-emerald-100">
+                <h3 class="text-xl font-bold text-emerald-800 mb-2">การบำรุงรักษาด้วยตนเอง (Autonomous Maintenance)</h3>
+                <p class="text-emerald-700 mb-4">หัวใจสำคัญคือความร่วมมือระหว่าง "ฝ่ายผลิต" และ "ฝ่ายบำรุงรักษา"</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="font-bold text-gray-800 mb-1">1. ทำความสะอาด</div>
+                        <p class="text-xs text-gray-500">ทำความสะอาดเพื่อค้นหาข้อบกพร่อง (Cleaning is Inspection)</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="font-bold text-gray-800 mb-1">2. ขจัดแหล่งกำเนิด</div>
+                        <p class="text-xs text-gray-500">มาตรการแก้ที่สาเหตุและจุดที่เข้าถึงยาก</p>
+                    </div>
+                    <div class="bg-white p-4 rounded shadow-sm">
+                        <div class="font-bold text-gray-800 mb-1">3. สร้างมาตรฐาน</div>
+                        <p class="text-xs text-gray-500">กำหนดมาตรฐานการทำความสะอาดและหล่อลื่นร่วมกัน</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-bold text-gray-800 mb-4">งานตรวจปรับ (Scraping)</h3>
+                <p class="text-sm text-gray-600 mb-4">ทักษะสำคัญในการปรับผิวงานให้เรียบตามต้องการ</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">เหล็กขูดแบน</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">เหล็กขูดโค้ง</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">เหล็กขูดสามเหลี่ยม</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">การลับคมด้วยหินน้ำมัน</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Challenges -->
+        <section id="challenges" class="content-section max-w-5xl mx-auto">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">ประสบการณ์และปัญหา</h2>
+                <p class="text-gray-600">ความท้าทายที่องค์กรต้องเผชิญในการบริหารจัดการอุตสาหกรรม</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- External Problems (From User Query) -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-orange-500">
+                    <h3 class="text-lg font-bold text-orange-700 mb-4 flex items-center">
+                        <span class="text-2xl mr-2">🌍</span> ปัญหาปัจจัยภายนอก
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4">ปัจจัยสภาพแวดล้อมที่ควบคุมได้ยากแต่ส่งผลกระทบสูง:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center bg-orange-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">การเมืองและนโยบายรัฐบาล</span>
+                        </li>
+                        <li class="flex items-center bg-orange-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">สภาวะเศรษฐกิจผันผวน</span>
+                        </li>
+                        <li class="flex items-center bg-orange-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">วิกฤตการณ์พลังงาน</span>
+                        </li>
+                        <li class="flex items-center bg-orange-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">ค่าแรงงานสูง</span>
+                        </li>
+                        <li class="flex items-center bg-orange-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">การแข่งขันที่รุนแรง</span>
+                        </li>
+                        <li class="flex items-center bg-orange-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-orange-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">เทคโนโลยีล้าสมัย</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Internal Maintenance Problems -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-blue-500">
+                    <h3 class="text-lg font-bold text-blue-700 mb-4 flex items-center">
+                        <span class="text-2xl mr-2">🏭</span> ปัญหาภายในงานบำรุงรักษา
+                    </h3>
+                    <p class="text-sm text-gray-500 mb-4">อุปสรรคในการดำเนินงาน TPM ภายในองค์กร:</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center bg-blue-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">ฝ่ายจัดการให้ความสำคัญน้อย</span>
+                        </li>
+                        <li class="flex items-center bg-blue-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">บุคลากรขาดทักษะและความรู้</span>
+                        </li>
+                        <li class="flex items-center bg-blue-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">ขาดการฝึกอบรมอย่างต่อเนื่อง</span>
+                        </li>
+                        <li class="flex items-center bg-blue-50 p-2 rounded">
+                            <span class="w-2 h-2 bg-blue-400 rounded-full mr-3"></span>
+                            <span class="text-gray-700 text-sm">มองข้ามความสำคัญของกฎเกณฑ์</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Navigation Logic
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Remove active class from all nav buttons
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Highlight current nav button
+            // Finding the button that calls this function with specific ID is tricky without ID on button, 
+            // identifying by onclick attribute substring match
+            const navButtons = document.querySelectorAll('.nav-item');
+            navButtons.forEach(btn => {
+                if(btn.getAttribute('onclick').includes(sectionId)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Re-render charts if visible (Chart.js needs visible canvas to render properly)
+            if (sectionId === 'dashboard') {
+                renderCharts();
+            }
+        }
+
+        // PDCA Interactive Logic
+        function highlightPDCA(step) {
+            const detailBox = document.getElementById('pdca-detail');
+            const messages = {
+                'plan': '<strong>PLAN (วางแผน):</strong> ใช้ข้อมูลเพื่อกำหนดมาตรฐานและวางแผนการบำรุงรักษาที่ชัดเจนและเป็นระบบ',
+                'do': '<strong>DO (ปฏิบัติ):</strong> ลงมือปฏิบัติจริง เช่น การซ่อมแซม การปรับแต่งเครื่องจักร การเติมน้ำมัน และการตรวจสอบตามแผน',
+                'check': '<strong>CHECK (ตรวจสอบ):</strong> บันทึกผลการปฏิบัติงานและนำมาวิเคราะห์เปรียบเทียบกับเป้าหมาย',
+                'action': '<strong>ACTION (ดำเนินการแก้ไข):</strong> นำผลวิเคราะห์มาปรับปรุงแก้ไข ป้อนข้อมูลกลับเพื่อกำหนดมาตรฐานใหม่ที่ดีขึ้น'
+            };
+            detailBox.innerHTML = messages[step];
+            detailBox.classList.remove('bg-gray-50');
+            detailBox.classList.add('bg-white', 'shadow-inner', 'border', 'border-gray-200');
+        }
+
+        // Chart.js Rendering
+        let pqcdsmChartInstance = null;
+        let resourcesChartInstance = null;
+
+        function renderCharts() {
+            // PQCDSM Chart
+            const ctx1 = document.getElementById('pqcdsmChart');
+            if (ctx1) {
+                if (pqcdsmChartInstance) pqcdsmChartInstance.destroy();
+                pqcdsmChartInstance = new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Productivity', 'Quality', 'Cost', 'Delivery', 'Safety', 'Morale'],
+                        datasets: [{
+                            label: 'ระดับความสำคัญ',
+                            data: [90, 85, 80, 75, 95, 70],
+                            backgroundColor: [
+                                'rgba(16, 185, 129, 0.7)',
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(239, 68, 68, 0.7)',
+                                'rgba(245, 158, 11, 0.7)',
+                                'rgba(139, 92, 246, 0.7)',
+                                'rgba(236, 72, 153, 0.7)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: { y: { beginAtZero: true, max: 100 } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            // 4Ms Resource Chart
+            const ctx2 = document.getElementById('resourcesChart');
+            if (ctx2) {
+                if (resourcesChartInstance) resourcesChartInstance.destroy();
+                resourcesChartInstance = new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Man (คน)', 'Machine (เครื่องจักร)', 'Material (วัสดุ)', 'Method (วิธีการ)'],
+                        datasets: [{
+                            data: [30, 40, 20, 10],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.8)',
+                                'rgba(16, 185, 129, 0.8)',
+                                'rgba(245, 158, 11, 0.8)',
+                                'rgba(107, 114, 128, 0.8)'
+                            ],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'bottom' } }
+                    }
+                });
+            }
+        }
+
+        // Initialize charts on load
+        window.addEventListener('load', () => {
+            renderCharts();
+        });
+
+    </script>
+</body>
+</html>
